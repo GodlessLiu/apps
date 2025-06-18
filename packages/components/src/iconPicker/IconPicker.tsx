@@ -13,20 +13,21 @@ const allIcons = Object.keys(AntdIcons)
   }));
 
 interface IconPickerProps {
-  value?: string;
-  onChange?: (value: string) => void;
+  defaultValue?: string;
+  handleChange?: (value: string) => void;
 }
 
 export const AfIconPicker: React.FC<IconPickerProps> = ({
-  value,
-  onChange,
+  defaultValue,
+  handleChange,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
-
+  const [value, setValue] = useState<string | null>(defaultValue || null);
   const handleIconClick = (iconName: string) => {
-    onChange?.(iconName);
+    setValue(iconName);
     setOpen(false);
+    handleChange?.(iconName);
   };
 
   const filteredIcons = allIcons.filter((icon) =>

@@ -1,19 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AfIconPicker } from "./IconPicker";
-import { useState } from "react";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof AfIconPicker> = {
   title: "Components/AfIconPicker",
   component: AfIconPicker,
   argTypes: {
-    value: {
-      type: "string",
-      defaultValue: "",
-    },
-    onChange: {
-      type: "function",
-      defaultValue: () => {},
+    defaultValue: {
+      control: "text",
+      defaultValue: "ArrowRightOutlined",
     },
   },
 };
@@ -22,15 +17,16 @@ export default meta;
 
 type Story = StoryObj<typeof AfIconPicker>;
 
-const template: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-    return <AfIconPicker {...args} value={value} onChange={setValue} />;
-  },
-};
+const template: Story = {};
 
 export const 基础使用: Story = {
   ...template,
+  args: {
+    defaultValue: "ArrowRightOutlined",
+    handleChange: (e) => {
+      console.log(e);
+    },
+  },
 };
 
 export const 测试选择图标: Story = {
