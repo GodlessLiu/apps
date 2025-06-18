@@ -12,7 +12,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "npx vitest --project=storybook"
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",

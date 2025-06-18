@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "build": "pnpm --filter @apps/components build",
-    "dev": "pnpm -F @apps/components dev",
-    "storybook": "pnpm -F @apps/components storybook"
+    "dev": "pnpm -F @apps/ui dev",
+    "storybook": "pnpm -F @apps/components storybook",
+    "test": "pnpm -F @apps/components test-storybook"
   },
   "devDependencies": {
     "eslint": "^9.25.0",
