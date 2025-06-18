@@ -1,0 +1,60 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { AfIconPicker } from "./IconPicker";
+import { useState } from "react";
+import { expect, userEvent, within } from "storybook/test";
+
+const meta: Meta<typeof AfIconPicker> = {
+  title: "Components/AfIconPicker",
+  component: AfIconPicker,
+  argTypes: {
+    value: {
+      type: "string",
+      defaultValue: "",
+    },
+    onChange: {
+      type: "function",
+      defaultValue: () => {},
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof AfIconPicker>;
+
+const template: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+    return <AfIconPicker {...args} value={value} onChange={setValue} />;
+  },
+};
+
+export const 基础使用: Story = {
+  ...template,
+};
+
+export const 测试选择图标: Story = {
+  ...template,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+    const select = canvas.getByText("请选择图标");
+    await userEvent.click(select);
+    const iconOne = canvas.getByLabelText("align-right");
+    await userEvent.click(iconOne);
+    const arrowRightOutlined = canvas.getByText("AlignRightOutlined");
+    expect(arrowRightOutlined).toBeInTheDocument();
+  },
+};
+
+export const 测试图标搜索: Story = {
+  ...template,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+    const select = canvas.getByText("请选择图标");
+    await userEvent.click(select);
+    const input = canvas.getByPlaceholderText("搜索图标");
+    await userEvent.type(input, "Youtube");
+    const youtubeOutlined = canvas.getByLabelText("youtube");
+    expect(youtubeOutlined).toBeInTheDocument();
+  },
+};
