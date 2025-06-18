@@ -39,7 +39,7 @@ const template: Story = {
           ref={modalRef}
           onCancel={() => modalRef.current?.cancel()}
           okText="确定"
-          cancelText="取消"
+          cancelText={<span data-testid="cancel">取消</span>}
         />
       </div>
     );
@@ -91,23 +91,25 @@ export const 测试关闭和开启: Story = {
   },
 };
 
-// export const 测试开启不同模态框: Story = {
-//   ...template,
-//   args: {
-//     childrenMap: {
-//       panel1: <div>content1</div>,
-//       panel2: <div>content2</div>,
-//     },
-//   },
-//   play: async ({ canvasElement }) => {
-//     const canvas = within(canvasElement.ownerDocument.body);
-//     const button1 = canvas.getByRole("button", { name: "open1" });
-//     const button2 = canvas.getByRole("button", { name: "open2" });
-//     await userEvent.click(button1);
-//     const content1 = canvas.getByText("content1");
-//     expect(content1).toBeInTheDocument();
-//     await userEvent.click(button2);
-//     const content2 = canvas.getByText("content2");
-//     expect(content2).toBeInTheDocument();
-//   },
-// };
+export const 测试开启不同模态框: Story = {
+  ...template,
+  args: {
+    childrenMap: {
+      panel1: <div>content1</div>,
+      panel2: <div>content2</div>,
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+    const button1 = canvas.getByRole("button", { name: "open1" });
+    const button2 = canvas.getByRole("button", { name: "open2" });
+    await userEvent.click(button1);
+    const content1 = canvas.getByText("content1");
+    expect(content1).toBeInTheDocument();
+    await userEvent.click(button2);
+    const content2 = canvas.getByText("content2");
+    expect(content2).toBeInTheDocument();
+    const closeButton = canvas.getByTestId("cancel");
+    await userEvent.click(closeButton, { delay: 500 });
+  },
+};
