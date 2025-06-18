@@ -38,3 +38,15 @@ export const 测试图标显示: Story = {
     expect(icon).toBeInTheDocument();
   },
 };
+
+export const 错误图标时显示默认图标: Story = {
+  ...template,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+    const icon = canvas.getByLabelText("question");
+    expect(icon).toBeInTheDocument();
+  },
+  args: {
+    name: "xxxx",
+  },
+};

@@ -14,14 +14,12 @@ export const AfDynamicIcon: React.FC<AfDynamicIconProps & AntdIconProps> = ({
 
   useEffect(() => {
     const loadIcon = async () => {
-      try {
-        const icon = (icons as never)[name];
-        if (icon) {
-          setIconComponent(() => icon);
-        }
-      } catch (error) {
-        console.error(`Icon ${name} not found, ${error}`);
+      const icon = (icons as never)[name];
+      if (icon) {
+        setIconComponent(() => icon);
+        return;
       }
+      setIconComponent(() => (icons as never)["QuestionOutlined"]);
     };
     loadIcon();
   }, [name]);
