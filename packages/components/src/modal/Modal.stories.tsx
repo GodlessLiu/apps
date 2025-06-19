@@ -84,7 +84,7 @@ export const 测试关闭和开启: Story = {
     const button1 = canvas.getByRole("button", { name: "open" });
     await userEvent.click(button1);
     const content1 = canvas.getByText("content");
-    expect(content1).toBeInTheDocument();
+    await expect(content1).toBeInTheDocument();
     const closeButton = canvas.getByTestId("cancel");
     await userEvent.click(closeButton, { delay: 500 });
     expect(content1).not.toBeInTheDocument();
@@ -105,10 +105,10 @@ export const 测试开启不同模态框: Story = {
     const button2 = canvas.getByRole("button", { name: "open2" });
     await userEvent.click(button1);
     const content1 = canvas.getByText("content1");
-    expect(content1).toBeInTheDocument();
+    await expect(content1).toBeInTheDocument();
     await userEvent.click(button2);
     const content2 = canvas.getByText("content2");
-    expect(content2).toBeInTheDocument();
+    await expect(content2).toBeInTheDocument();
     const closeButton = canvas.getByTestId("cancel");
     await userEvent.click(closeButton, { delay: 500 });
   },

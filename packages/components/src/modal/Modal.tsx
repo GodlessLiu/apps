@@ -7,16 +7,12 @@ export interface AfModalRef {
   cancel: () => void;
 }
 
-export interface AfModalProps {
+export interface AfModalProps extends ModalProps {
   childrenMap: Record<string, React.ReactNode>;
   ref: React.Ref<AfModalRef>;
 }
 
-export const AfModal: FC<AfModalProps & ModalProps> = ({
-  ref,
-  childrenMap,
-  ...props
-}) => {
+export const AfModal: FC<AfModalProps> = ({ ref, childrenMap, ...props }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [currentKey, setCurrentKey] = useState<string>("");
 

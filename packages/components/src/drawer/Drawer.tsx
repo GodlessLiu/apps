@@ -7,16 +7,12 @@ export interface AfDrawerRef {
   close: () => void;
 }
 
-export interface AfDrawerProps {
+export interface AfDrawerProps extends DrawerProps {
   childrenMap: Record<string, React.ReactNode>;
   ref: React.Ref<AfDrawerRef>;
 }
 
-export const AfDrawer: FC<AfDrawerProps & DrawerProps> = ({
-  ref,
-  childrenMap,
-  ...props
-}) => {
+export const AfDrawer: FC<AfDrawerProps> = ({ ref, childrenMap, ...props }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [currentKey, setCurrentKey] = useState<string>("");
 

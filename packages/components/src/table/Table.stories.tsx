@@ -59,10 +59,10 @@ export const 测试表格高度: Story = {
     const canvas = within(canvasElement.ownerDocument.body);
     const tableContent = canvas.getByTestId("table-content");
     // 700 - 45 (container height - pagination height)
-    expect(tableContent).toHaveStyle({ height: "655px" });
+    await expect(tableContent).toHaveStyle({ height: "655px" });
     const tableBody = tableContent.querySelector(".ant-table-body");
     // 700 - 45 - 55 (container height - pagination height - header height)
-    expect(tableBody).toHaveStyle({ maxHeight: "600px" });
+    await expect(tableBody).toHaveStyle({ maxHeight: "600px" });
   },
 };
 
@@ -74,10 +74,10 @@ export const 分页器点击触发事件: Story = {
     const num3 = canvas.getByTitle("3");
     await userEvent.click(num2);
     // @ts-ignore
-    expect(args.pagination.onChange).toHaveBeenCalledWith(2, 10);
+    await expect(args.pagination.onChange).toHaveBeenCalledWith(2, 10);
     await userEvent.click(num3);
     // @ts-ignore
-    expect(args.pagination.onChange).toHaveBeenCalledWith(3, 10);
+    await expect(args.pagination.onChange).toHaveBeenCalledWith(3, 10);
   },
   args: {
     pagination: {

@@ -38,7 +38,7 @@ export const 测试选择图标: Story = {
     const iconOne = canvas.getByLabelText("align-right");
     await userEvent.click(iconOne);
     const arrowRightOutlined = canvas.getByText("AlignRightOutlined");
-    expect(arrowRightOutlined).toBeInTheDocument();
+    await expect(arrowRightOutlined).toBeInTheDocument();
   },
 };
 
@@ -51,6 +51,6 @@ export const 测试图标搜索: Story = {
     const input = canvas.getByPlaceholderText("搜索图标");
     await userEvent.type(input, "Youtube");
     const youtubeOutlined = canvas.getByLabelText("youtube");
-    expect(youtubeOutlined).toBeInTheDocument();
+    await expect(youtubeOutlined).toBeInTheDocument();
   },
 };

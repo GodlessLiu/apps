@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import * as icons from "@ant-design/icons";
 import type { AntdIconProps } from "@ant-design/icons/lib/components/AntdIcon";
 
-interface AfDynamicIconProps {
+interface AfDynamicIconProps extends AntdIconProps {
   name: string;
 }
 
-export const AfDynamicIcon: React.FC<AfDynamicIconProps & AntdIconProps> = ({
+export const AfDynamicIcon: React.FC<AfDynamicIconProps> = ({
   name,
   ...props
 }) => {

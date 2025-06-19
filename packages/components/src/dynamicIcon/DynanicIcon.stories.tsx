@@ -35,7 +35,7 @@ export const 测试图标显示: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.ownerDocument.body);
     const icon = canvas.getByLabelText("user");
-    expect(icon).toBeInTheDocument();
+    await expect(icon).toBeInTheDocument();
   },
 };
 
@@ -44,7 +44,7 @@ export const 错误图标时显示默认图标: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.ownerDocument.body);
     const icon = canvas.getByLabelText("question");
-    expect(icon).toBeInTheDocument();
+    await expect(icon).toBeInTheDocument();
   },
   args: {
     name: "xxxx",
